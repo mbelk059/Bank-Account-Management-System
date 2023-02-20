@@ -3,18 +3,13 @@ import java.util.Scanner;
 public class Main {
   
   static int total = 0;
+  static String username;
   
   public static void main(String[] args) {
-    //BankAccount();
-    Opening();
-  }
-
-  public static void BankAccount() {
     Welcome();
-    
   }
 
-  public static void Opening() {
+  public static void MainMenu() {
     System.out.print("Login or Signup: ");
     Scanner sc = new Scanner(System.in);
     String choice = sc.nextLine();
@@ -24,7 +19,7 @@ public class Main {
     } else if (choice.equals("login")) {
       Login();
     } else {
-      Opening();
+      MainMenu();
     }
     
   }
@@ -74,7 +69,10 @@ public class Main {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    
+
+    MainMenu();
+
+    System.out.println();
     System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer");
     System.out.println();
     System.out.print("Choose an option: ");
@@ -100,14 +98,14 @@ public class Main {
     Scanner sc = new Scanner(System.in);
     while (true) {
       System.out.println();
-      System.out.print("Enter amount to deposit: $");
+      System.out.print("enter amount to deposit: $");
       int deposit = sc.nextInt();
       if (deposit == 0) {
-        System.out.println("Thanks for depositing with us today. Goodbye!");
+        System.out.println("thx for depositing with us today. bye");
         break;
       } else {
         total += deposit; 
-        System.out.println("You now have $" + total + " in your account.");
+        System.out.println("u now have $" + total + " in ur account.");
       }
     }
   }
@@ -118,7 +116,7 @@ public class Main {
     System.out.print("How much would you like to withdraw? $");
     int withdraw = sc.nextInt();
     total -= withdraw;
-    System.out.println("You now have $" + total + " in your account.");
+    System.out.println("u now have $" + total + " in ur account.");
   }
 
   public static int CheckBalance() {
@@ -126,6 +124,14 @@ public class Main {
   }
 
   public static void DepositHistory() {
+    
+  }
+
+  public static void WithdrawalHistory() {
+    
+  }
+
+  public static void Transfer() {
     
   }
   
