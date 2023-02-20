@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
   
   static int total = 0;
+  static Scanner scanner = new Scanner(System.in);
   
   public static void main(String[] args) {
     
@@ -13,8 +14,7 @@ public class Main {
   public static void MainMenu() {
     
     System.out.print("Login or Signup: ");
-    Scanner sc = new Scanner(System.in);
-    String choice = sc.nextLine();
+    String choice = scanner.nextLine();
 
     if (choice.equals("signup")) {
       Signup();
@@ -30,12 +30,10 @@ public class Main {
     
     System.out.println();
     System.out.print("enter ur username: ");
-    Scanner sc = new Scanner(System.in);
-    String username = sc.nextLine();
+    String username = scanner.nextLine();
 
     System.out.print("enter ur password: ");
-    Scanner scc = new Scanner(System.in);
-    String password = scc.nextLine();
+    String password = scanner.nextLine();
 
     // need to check if login is successful
 
@@ -47,12 +45,10 @@ public class Main {
     
     System.out.println();
     System.out.print("enter a username: ");
-    Scanner sc = new Scanner(System.in);
-    String username = sc.nextLine();
+    String username = scanner.nextLine();
 
     System.out.print("enter a password: ");
-    Scanner scc = new Scanner(System.in);
-    String password = scc.nextLine();
+    String password = scanner.nextLine();
     System.out.println();
     System.out.println("thanks for signing up with us!");
     System.out.println("taking u to login page...");
@@ -70,7 +66,7 @@ public class Main {
   public static void Options() {
 
     try {
-      Thread.sleep(300);
+      Thread.sleep(500);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -82,8 +78,8 @@ public class Main {
     System.out.println();
     System.out.print("Choose an option: ");
 
-    Scanner sc = new Scanner(System.in);
-    int option = sc.nextInt();
+    int option = scanner.nextInt();
+    scanner.nextLine();
 
     switch (option) {
       case 1:
@@ -93,7 +89,9 @@ public class Main {
         Withdraw();
         break;
       case 3:
+        System.out.println("==========================");
         System.out.println("ur current balance is $" + CheckBalance());
+        System.out.println("==========================");
         Options();
         break;
       case 4:
@@ -119,6 +117,11 @@ public class Main {
         System.out.println("===========================");
         System.out.println("          GOODBYE          ");
         System.out.println("===========================");
+        System.exit(0);
+        break;
+      default:
+        System.out.println("Invalid option. Please try again.");
+        Options();
         break;
     }
     
@@ -168,8 +171,13 @@ public class Main {
     System.out.println();
     System.out.print("How much would you like to withdraw? $");
     int withdraw = sc.nextInt();
-    total -= withdraw;
-    System.out.println("u now have $" + total + " in ur account.");
+    if (withdraw > total) {
+      System.out.println("insufficient funds.");
+      Withdraw();
+    } else {
+      total -= withdraw;
+      System.out.println("u now have $" + total + " in ur account.");
+    }
 
     Options();
     
