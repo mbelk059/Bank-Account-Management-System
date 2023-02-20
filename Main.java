@@ -5,13 +5,61 @@ public class Main {
   static int total = 0;
   
   public static void main(String[] args) {
-    BankAccount();
+    //BankAccount();
+    Opening();
   }
 
   public static void BankAccount() {
     Welcome();
-    //DepositHistory();
-    //Deposit();
+    
+  }
+
+  public static void Opening() {
+    System.out.print("Login or Signup: ");
+    Scanner sc = new Scanner(System.in);
+    String choice = sc.nextLine();
+
+    if (choice.equals("signup")) {
+      Signup();
+    } else if (choice.equals("login")) {
+      Login();
+    } else {
+      Opening();
+    }
+    
+  }
+
+  public static void Login() {
+    System.out.println();
+    System.out.print("enter ur username: ");
+    Scanner sc = new Scanner(System.in);
+    String username = sc.nextLine();
+
+    System.out.print("enter ur password: ");
+    Scanner scc = new Scanner(System.in);
+    String password = scc.nextLine();
+  }
+
+  public static void Signup() {
+    System.out.println();
+    System.out.print("enter a username: ");
+    Scanner sc = new Scanner(System.in);
+    String username = sc.nextLine();
+
+    System.out.print("enter a password: ");
+    Scanner scc = new Scanner(System.in);
+    String password = scc.nextLine();
+    System.out.println();
+    System.out.println("thanks for signing up with us!");
+    System.out.println("taking u to login page...");
+
+    try {
+      Thread.sleep(600);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    Login();
     
   }
 
@@ -27,23 +75,35 @@ public class Main {
       e.printStackTrace();
     }
     
-    System.out.println("Choose an option: ");
-    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Create Account\n7. Transfer");
+    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer");
+    System.out.println();
+    System.out.print("Choose an option: ");
+
+    Scanner sc = new Scanner(System.in);
+    int option = sc.nextInt();
+
+    switch (option) {
+      case 1:
+        Deposit();
+        break;
+      case 2:
+        Withdraw();
+        break;
+      case 3:
+        System.out.println("ur current balance is $" + CheckBalance() + " .");
+        break;
+    }
+    
   }
   
   public static void Deposit() {
     Scanner sc = new Scanner(System.in);
     while (true) {
+      System.out.println();
       System.out.print("Enter amount to deposit: $");
       int deposit = sc.nextInt();
-      if (deposit == -1) {
-        System.out.println("Thanks for using this bank today. Goodbye!");
-        System.out.println();
-        System.out.print("Would you like to make a withdrawal? ");
-        String withdrawal_option = sc.next();
-        if (withdrawal_option.equalsIgnoreCase("yes") || withdrawal_option.equalsIgnoreCase("y")) {
-          Withdraw();
-        }
+      if (deposit == 0) {
+        System.out.println("Thanks for depositing with us today. Goodbye!");
         break;
       } else {
         total += deposit; 
@@ -54,16 +114,18 @@ public class Main {
 
   public static void Withdraw() {
     Scanner sc = new Scanner(System.in);
+    System.out.println();
     System.out.print("How much would you like to withdraw? $");
     int withdraw = sc.nextInt();
     total -= withdraw;
     System.out.println("You now have $" + total + " in your account.");
   }
 
+  public static int CheckBalance() {
+    return total;
+  }
+
   public static void DepositHistory() {
-    System.out.print("would u like to view ur deposit history?: ");
-    Scanner sc = new Scanner(System.in);
-    String view = sc.nextLine();
     
   }
   
