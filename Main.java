@@ -63,22 +63,11 @@ public class Main {
     
   }
 
-  public static void Welcome() {
-    
-    System.out.println("===========================");
-    System.out.println("   WELCOME TO THE BANK");
-    System.out.println("===========================");
-    System.out.println("");
-    // time delay before next code
-    try {
-      Thread.sleep(700);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-
-    MainMenu();
+  public static void Options() {
 
     System.out.println();
+    System.out.println("OPTIONS");
+    System.out.println("-------");
     System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer\n7. Sign Out");
     System.out.println();
     System.out.print("Choose an option: ");
@@ -123,6 +112,26 @@ public class Main {
     }
     
   }
+
+  public static void Welcome() {
+    
+    System.out.println("===========================");
+    System.out.println("   WELCOME TO THE BANK");
+    System.out.println("===========================");
+    System.out.println("");
+    
+    // time delay before next code
+    try {
+      Thread.sleep(700);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    MainMenu();
+
+    Options();
+    
+  }
   
   public static void Deposit() {
     
@@ -132,13 +141,15 @@ public class Main {
       System.out.print("enter amount to deposit: $");
       int deposit = sc.nextInt();
       if (deposit == 0) {
-        System.out.println("thx for depositing with us today. bye");
+        System.out.println("thx for depositing with us today");
         break;
       } else {
         total += deposit; 
         System.out.println("u now have $" + total + " in ur account.");
       }
     }
+
+    Options();
     
   }
 
@@ -150,6 +161,8 @@ public class Main {
     int withdraw = sc.nextInt();
     total -= withdraw;
     System.out.println("u now have $" + total + " in ur account.");
+
+    Options();
     
   }
 
