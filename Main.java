@@ -36,6 +36,10 @@ public class Main {
     System.out.print("enter ur password: ");
     Scanner scc = new Scanner(System.in);
     String password = scc.nextLine();
+
+    // need to check if login is successful
+
+    Options();
     
   }
 
@@ -65,6 +69,12 @@ public class Main {
 
   public static void Options() {
 
+    try {
+      Thread.sleep(300);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
     System.out.println();
     System.out.println("OPTIONS");
     System.out.println("-------");
@@ -83,7 +93,8 @@ public class Main {
         Withdraw();
         break;
       case 3:
-        System.out.println("ur current balance is $" + CheckBalance() + " .");
+        System.out.println("ur current balance is $" + CheckBalance());
+        Options();
         break;
       case 4:
         DepositHistory();
@@ -128,8 +139,6 @@ public class Main {
     }
 
     MainMenu();
-
-    Options();
     
   }
   
@@ -175,18 +184,24 @@ public class Main {
   public static void DepositHistory() {
     
     System.out.println("sorry, under maintenance");
+
+    Options();
     
   }
 
   public static void WithdrawalHistory() {
 
     System.out.println("sorry, under maintenance");
+
+    Options();
     
   }
 
   public static void Transfer() {
 
     System.out.println("sorry, under maintenance");
+
+    Options();
     
   }
   
