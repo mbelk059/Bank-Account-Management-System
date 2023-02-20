@@ -13,7 +13,7 @@ public class Main {
 
   public static void MainMenu() {
     
-    System.out.print("Login or Signup: ");
+    System.out.print("login or signup: ");
     String choice = scanner.nextLine();
 
     if (choice.equals("signup")) {
@@ -76,7 +76,7 @@ public class Main {
     System.out.println("-------");
     System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer\n7. Sign Out");
     System.out.println();
-    System.out.print("Choose an option: ");
+    System.out.print("choose an option: ");
 
     int option = scanner.nextInt();
     scanner.nextLine();
@@ -120,7 +120,7 @@ public class Main {
         System.exit(0);
         break;
       default:
-        System.out.println("Invalid option. Please try again.");
+        System.out.println("invalid option, pls try again.");
         Options();
         break;
     }
