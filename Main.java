@@ -3,13 +3,15 @@ import java.util.Scanner;
 public class Main {
   
   static int total = 0;
-  static String username;
   
   public static void main(String[] args) {
+    
     Welcome();
+    
   }
 
   public static void MainMenu() {
+    
     System.out.print("Login or Signup: ");
     Scanner sc = new Scanner(System.in);
     String choice = sc.nextLine();
@@ -25,6 +27,7 @@ public class Main {
   }
 
   public static void Login() {
+    
     System.out.println();
     System.out.print("enter ur username: ");
     Scanner sc = new Scanner(System.in);
@@ -33,9 +36,11 @@ public class Main {
     System.out.print("enter ur password: ");
     Scanner scc = new Scanner(System.in);
     String password = scc.nextLine();
+    
   }
 
   public static void Signup() {
+    
     System.out.println();
     System.out.print("enter a username: ");
     Scanner sc = new Scanner(System.in);
@@ -59,6 +64,7 @@ public class Main {
   }
 
   public static void Welcome() {
+    
     System.out.println("===========================");
     System.out.println("   WELCOME TO THE BANK");
     System.out.println("===========================");
@@ -73,7 +79,7 @@ public class Main {
     MainMenu();
 
     System.out.println();
-    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer");
+    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer\n7. Sign Out");
     System.out.println();
     System.out.print("Choose an option: ");
 
@@ -90,11 +96,36 @@ public class Main {
       case 3:
         System.out.println("ur current balance is $" + CheckBalance() + " .");
         break;
+      case 4:
+        DepositHistory();
+        break;
+      case 5:
+        WithdrawalHistory();
+        break;
+      case 6:
+        Transfer();
+        break;
+      case 7:
+        System.out.println();
+        System.out.println("signing u out..");
+        System.out.println();
+
+        try {
+          Thread.sleep(600);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        
+        System.out.println("===========================");
+        System.out.println("          GOODBYE          ");
+        System.out.println("===========================");
+        break;
     }
     
   }
   
   public static void Deposit() {
+    
     Scanner sc = new Scanner(System.in);
     while (true) {
       System.out.println();
@@ -108,30 +139,41 @@ public class Main {
         System.out.println("u now have $" + total + " in ur account.");
       }
     }
+    
   }
 
   public static void Withdraw() {
+    
     Scanner sc = new Scanner(System.in);
     System.out.println();
     System.out.print("How much would you like to withdraw? $");
     int withdraw = sc.nextInt();
     total -= withdraw;
     System.out.println("u now have $" + total + " in ur account.");
+    
   }
 
   public static int CheckBalance() {
+    
     return total;
+    
   }
 
   public static void DepositHistory() {
     
+    System.out.println("sorry, under maintenance");
+    
   }
 
   public static void WithdrawalHistory() {
+
+    System.out.println("sorry, under maintenance");
     
   }
 
   public static void Transfer() {
+
+    System.out.println("sorry, under maintenance");
     
   }
   
