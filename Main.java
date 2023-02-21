@@ -4,6 +4,9 @@ public class Main {
   
   static int total = 0;
   static Scanner scanner = new Scanner(System.in);
+  static User[] users = new User[10];
+  static int[] balances = new int[10];
+  static int userCount = 0;
   
   public static void main(String[] args) {
     
@@ -35,9 +38,22 @@ public class Main {
     System.out.print("enter ur password: ");
     String password = scanner.nextLine();
 
-    // need to check if login is successful
+    // need to check if login is valid
 
-    Options();
+    int userIndex = -1;
+    for (int i = 0; i < users.length; i++) {
+      if (users[i] != null && users[i].getUsername().equals(username) && users[i].getPassword().equals(password)) {
+        userIndex = i;
+        break;
+      }
+    }
+
+    if (userIndex == -1) {
+      System.out.println("invalid username or password, try again");
+      Login();
+    } else {
+      Options(userIndex);
+    }
     
   }
 
@@ -51,19 +67,27 @@ public class Main {
     String password = scanner.nextLine();
     System.out.println();
     System.out.println("thanks for signing up with us!");
-    System.out.println("taking u to login page...");
 
-    try {
-      Thread.sleep(600);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    for (int i = 0; i < users.length; i++) {
+      if (users[i] == null) {
+        users[i] = new User(username, password, 0);
+        balances[i] = 0;
+        System.out.println("taking u to login page...");
+        try {
+          Thread.sleep(600);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        Login();
+      }
     }
 
-    Login();
     
+    System.out.println("Sorry, we could not create your account. The bank is full.");
+    MainMenu();
   }
 
-  public static void Options() {
+  public static void Options(int userIndex) {
 
     try {
       Thread.sleep(500);
@@ -83,25 +107,25 @@ public class Main {
 
     switch (option) {
       case 1:
-        Deposit();
+        Deposit(userIndex);
         break;
       case 2:
-        Withdraw();
+        Withdraw(userIndex);
         break;
       case 3:
         System.out.println("==========================");
-        System.out.println("ur current balance is $" + CheckBalance());
+        System.out.println("ur current balance is $" + CheckBalance(userIndex));
         System.out.println("==========================");
-        Options();
+        Options(userIndex);
         break;
       case 4:
-        DepositHistory();
+        DepositHistory(userIndex);
         break;
       case 5:
-        WithdrawalHistory();
+        WithdrawalHistory(userIndex);
         break;
       case 6:
-        Transfer();
+        Transfer(userIndex);
         break;
       case 7:
         System.out.println();
@@ -121,7 +145,7 @@ public class Main {
         break;
       default:
         System.out.println("invalid option, pls try again.");
-        Options();
+        Options(userIndex);
         break;
     }
     
@@ -145,7 +169,7 @@ public class Main {
     
   }
   
-  public static void Deposit() {
+  public static void Deposit(int userIndex) {
     
     Scanner sc = new Scanner(System.in);
     while (true) {
@@ -156,60 +180,60 @@ public class Main {
         System.out.println("thx for depositing with us today");
         break;
       } else {
-        total += deposit; 
-        System.out.println("u now have $" + total + " in ur account.");
+        balances[userIndex] += deposit;
+        System.out.println("u now have $" + balances[userIndex] + " in ur account.");
       }
     }
 
-    Options();
+    Options(userIndex);
     
   }
 
-  public static void Withdraw() {
+  public static void Withdraw(int userIndex) {
     
     Scanner sc = new Scanner(System.in);
     System.out.println();
     System.out.print("How much would you like to withdraw? $");
     int withdraw = sc.nextInt();
-    if (withdraw > total) {
+    if (withdraw > balances[userIndex]) {
       System.out.println("insufficient funds.");
-      Withdraw();
+      Withdraw(userIndex);
     } else {
-      total -= withdraw;
-      System.out.println("u now have $" + total + " in ur account.");
+      balances[userIndex] -= withdraw;
+      System.out.println("u now have $" + balances[userIndex] + " in ur account.");
     }
 
-    Options();
+    Options(userIndex);
     
   }
 
-  public static int CheckBalance() {
+  public static int CheckBalance(int userIndex) {
     
-    return total;
+    return balances[userIndex];
     
   }
 
-  public static void DepositHistory() {
+  public static void DepositHistory(int userIndex) {
     
     System.out.println("sorry, under maintenance");
 
-    Options();
+    Options(userIndex);
     
   }
 
-  public static void WithdrawalHistory() {
+  public static void WithdrawalHistory(int userIndex) {
 
     System.out.println("sorry, under maintenance");
 
-    Options();
+    Options(userIndex);
     
   }
 
-  public static void Transfer() {
+  public static void Transfer(int userIndex) {
 
     System.out.println("sorry, under maintenance");
 
-    Options();
+    Options(userIndex);
     
   }
   
