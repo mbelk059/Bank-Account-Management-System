@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
   
-  static int total = 0;
   static Scanner scanner = new Scanner(System.in);
   static User[] users = new User[10];
   static int[] balances = new int[10];
@@ -50,7 +49,7 @@ public class Main {
 
     if (userIndex == -1) {
       System.out.println("invalid username or password, try again");
-      Login();
+      MainMenu();
     } else {
       Options(userIndex);
     }
@@ -214,7 +213,7 @@ public class Main {
   }
 
   public static void DepositHistory(int userIndex) {
-    
+    System.out.println();
     System.out.println("sorry, under maintenance");
 
     Options(userIndex);
@@ -222,7 +221,7 @@ public class Main {
   }
 
   public static void WithdrawalHistory(int userIndex) {
-
+    System.out.println();
     System.out.println("sorry, under maintenance");
 
     Options(userIndex);
@@ -230,7 +229,7 @@ public class Main {
   }
 
   public static void Transfer(int userIndex) {
-
+    System.out.println();
     System.out.println("sorry, under maintenance");
 
     Options(userIndex);
