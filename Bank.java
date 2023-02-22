@@ -106,7 +106,7 @@ public class Bank {
     System.out.println();
     System.out.println("OPTIONS");
     System.out.println("-------");
-    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Deposit History\n5. Withdrawal History\n6. Transfer\n7. Sign Out");
+    System.out.println("1. Deposit \n2. Withdraw\n3. Check Balance\n4. Transaction History\n5. Transfer\n6. Sign Out");
     System.out.println();
     System.out.print("choose an option: ");
 
@@ -138,15 +138,12 @@ public class Bank {
         Options(userIndex);
         break;
       case 4:
-        DepositHistory(userIndex);
+        TransactionHistory(userIndex);
         break;
-      case 5:
-        WithdrawalHistory(userIndex);
-        break;
-      case 6:
+      case 65:
         Transfer(userIndex);
         break;
-      case 7:
+      case 6:
         System.out.println();
         System.out.println("signing u out..");
         System.out.println();
@@ -249,15 +246,8 @@ public class Bank {
     
   }
 
-  public static void DepositHistory(int userIndex) {
-    System.out.println();
-    System.out.println("sorry, under maintenance");
-
-    Options(userIndex);
+  public static void TransactionHistory(int userIndex) {
     
-  }
-
-  public static void WithdrawalHistory(int userIndex) {
     System.out.println();
     System.out.println("sorry, under maintenance");
 
@@ -266,6 +256,7 @@ public class Bank {
   }
 
   public static void Transfer(int userIndex) {
+    
     System.out.println();
     System.out.println("sorry, under maintenance");
 
