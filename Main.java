@@ -53,6 +53,17 @@ public class Main {
       System.out.println("invalid username or password, try again");
       MainMenu();
     } else {
+      System.out.println();
+
+      try {
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      
+      System.out.println("==================");
+      System.out.println("LOGIN SUCCESSFUL..");
+      System.out.println("==================");
       Options(userIndex);
     }
     
@@ -115,9 +126,9 @@ public class Main {
         break;
       case 3:
         System.out.println();
-        System.out.println("==========================");
+        System.out.println("===========================");
         System.out.println("ur current balance is $" + CheckBalance(userIndex));
-        System.out.println("==========================");
+        System.out.println("===========================");
         Options(userIndex);
         break;
       case 4:
@@ -176,17 +187,17 @@ public class Main {
     try {
 
       while (true) {
-      System.out.println();
-      System.out.print("enter amount to deposit: $");
-      int deposit = scanner.nextInt();
-      if (deposit == 0) {
-        System.out.println("thx for depositing with us today");
-        break;
-      } else {
-        balances[userIndex] += deposit;
-        System.out.println("u now have $" + balances[userIndex] + " in ur account.");
+        System.out.println();
+        System.out.print("enter amount to deposit: $");
+        int deposit = scanner.nextInt();
+        if (deposit == 0) {
+          System.out.println("thx for depositing with us today");
+          break;
+        } else {
+          balances[userIndex] += deposit;
+          System.out.println("u now have $" + balances[userIndex] + " in ur account.");
+        }
       }
-    }
       
     } catch (InputMismatchException e) {
       System.out.println("plz enter a whole integer value");
