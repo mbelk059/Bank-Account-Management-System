@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 public class Bank {
 
   static Scanner scanner = new Scanner(System.in);
-  static User[] users = new User[10];
-  static int[] balances = new int[10];
+  static ArrayList<User> users = new ArrayList<User>();
+  static ArrayList<Integer> balances = new ArrayList<Integer>();
   static int userCount = 0;
 
   public static void MainMenu() {
@@ -36,8 +36,8 @@ public class Bank {
     // need to check if login is valid
 
     int userIndex = -1;
-    for (int i = 0; i < users.length; i++) {
-      if (users[i] != null && users[i].getUsername().equals(username) && users[i].getPassword().equals(password)) {
+    for (int i = 0; i < users.size(); i++) {
+      if (users.get(i) != null && users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)) {
         userIndex = i;
         break;
       }
@@ -58,7 +58,13 @@ public class Bank {
       System.out.println("==================");
       System.out.println("LOGIN SUCCESSFUL..");
       System.out.println("==================");
-      Options(userIndex);
+
+      if (userIndex < balances.size()) {
+        Options(userIndex);
+      } else {
+        System.out.println("Error: balance not found");
+        MainMenu();
+      }
     }
     
   }
@@ -74,24 +80,20 @@ public class Bank {
     System.out.println();
     System.out.println("thanks for signing up with us!");
 
-    for (int i = 0; i < users.length; i++) {
-      if (users[i] == null) {
-        users[i] = new User(username, password, 0);
-        balances[i] = 0;
-        System.out.println("taking u to login page...");
-        try {
-          Thread.sleep(600);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-        Login();
-      }
+    users.add(new User(username, password, 0));
+    balances.add(0);
+
+    System.out.println("taking u to login page...");
+    try {
+        Thread.sleep(600);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
 
-    
-    System.out.println("Sorry, we could not create your account. The bank is full.");
+    Login();
     MainMenu();
-  }
+}
+
 
   public static void Options(int userIndex) {
 
@@ -198,8 +200,8 @@ public class Bank {
           System.out.println("thx for depositing with us today");
           break;
         } else {
-          balances[userIndex] += deposit;
-          System.out.println("u now have $" + balances[userIndex] + " in ur account.");
+          balances.set(userIndex, balances.get(userIndex) + deposit);
+          System.out.println("u now have $" + balances.get(userIndex) + " in ur account.");
         }
       }
       
@@ -221,12 +223,13 @@ public class Bank {
       System.out.println();
       System.out.print("How much would you like to withdraw? $");
       int withdraw = scanner.nextInt();
-      if (withdraw > balances[userIndex]) {
+      if (withdraw > balances.get(userIndex)) {
         System.out.println("insufficient funds.");
         Withdraw(userIndex);
       } else {
-        balances[userIndex] -= withdraw;
-        System.out.println("u now have $" + balances[userIndex] + " in ur account.");
+        int newBalance = balances.get(userIndex) - withdraw;
+        balances.set(userIndex, newBalance);
+        System.out.println("u now have $" + balances.get(userIndex) + " in ur account.");
       }
       
     } catch (InputMismatchException e) {
@@ -242,7 +245,7 @@ public class Bank {
 
   public static int CheckBalance(int userIndex) {
     
-    return balances[userIndex];
+    return balances.get(userIndex);
     
   }
 
