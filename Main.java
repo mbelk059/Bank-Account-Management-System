@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Main {
   
@@ -171,8 +172,10 @@ public class Main {
   }
   
   public static void Deposit(int userIndex) {
-    
-    while (true) {
+
+    try {
+
+      while (true) {
       System.out.println();
       System.out.print("enter amount to deposit: $");
       int deposit = scanner.nextInt();
@@ -183,6 +186,12 @@ public class Main {
         balances[userIndex] += deposit;
         System.out.println("u now have $" + balances[userIndex] + " in ur account.");
       }
+    }
+      
+    } catch (InputMismatchException e) {
+      System.out.println("plz enter a whole integer value");
+      scanner.next();
+      Deposit(userIndex);
     }
 
     Options(userIndex);
