@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
   
@@ -89,7 +90,7 @@ public class Main {
   public static void Options(int userIndex) {
 
     try {
-      Thread.sleep(500);
+      Thread.sleep(800);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -112,6 +113,7 @@ public class Main {
         Withdraw(userIndex);
         break;
       case 3:
+        System.out.println();
         System.out.println("==========================");
         System.out.println("ur current balance is $" + CheckBalance(userIndex));
         System.out.println("==========================");
@@ -170,11 +172,10 @@ public class Main {
   
   public static void Deposit(int userIndex) {
     
-    Scanner sc = new Scanner(System.in);
     while (true) {
       System.out.println();
       System.out.print("enter amount to deposit: $");
-      int deposit = sc.nextInt();
+      int deposit = scanner.nextInt();
       if (deposit == 0) {
         System.out.println("thx for depositing with us today");
         break;
@@ -190,10 +191,9 @@ public class Main {
 
   public static void Withdraw(int userIndex) {
     
-    Scanner sc = new Scanner(System.in);
     System.out.println();
     System.out.print("How much would you like to withdraw? $");
-    int withdraw = sc.nextInt();
+    int withdraw = scanner.nextInt();
     if (withdraw > balances[userIndex]) {
       System.out.println("insufficient funds.");
       Withdraw(userIndex);
