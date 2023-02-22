@@ -114,8 +114,18 @@ public class Main {
     System.out.println();
     System.out.print("choose an option: ");
 
-    int option = scanner.nextInt();
-    scanner.nextLine();
+    int option;
+
+    try {
+
+      option = scanner.nextInt();
+      
+    } catch (InputMismatchException e) {
+      System.out.println("invalid input, plz try again");
+      scanner.nextLine();
+      Options(userIndex);
+      return;
+    }
 
     switch (option) {
       case 1:
@@ -202,6 +212,7 @@ public class Main {
     } catch (InputMismatchException e) {
       System.out.println("plz enter a whole integer value");
       scanner.next();
+      System.out.println();
       Deposit(userIndex);
     }
 
@@ -210,16 +221,25 @@ public class Main {
   }
 
   public static void Withdraw(int userIndex) {
-    
-    System.out.println();
-    System.out.print("How much would you like to withdraw? $");
-    int withdraw = scanner.nextInt();
-    if (withdraw > balances[userIndex]) {
-      System.out.println("insufficient funds.");
+
+    try {
+
+      System.out.println();
+      System.out.print("How much would you like to withdraw? $");
+      int withdraw = scanner.nextInt();
+      if (withdraw > balances[userIndex]) {
+        System.out.println("insufficient funds.");
+        Withdraw(userIndex);
+      } else {
+        balances[userIndex] -= withdraw;
+        System.out.println("u now have $" + balances[userIndex] + " in ur account.");
+      }
+      
+    } catch (InputMismatchException e) {
+      System.out.println("plz enter a whole integer value");
+      scanner.next();
+      System.out.println();
       Withdraw(userIndex);
-    } else {
-      balances[userIndex] -= withdraw;
-      System.out.println("u now have $" + balances[userIndex] + " in ur account.");
     }
 
     Options(userIndex);
