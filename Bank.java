@@ -140,7 +140,7 @@ public class Bank {
       case 4:
         TransactionHistory(userIndex);
         break;
-      case 65:
+      case 5:
         Transfer(userIndex);
         break;
       case 6:
